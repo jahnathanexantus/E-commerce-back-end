@@ -20,11 +20,11 @@ router.get('/:id',async (req, res) => {
   try {
     const idData = await Tag.findByPk(req.params.id, {
       // JOIN with travellers, using the Trip through table
-      include: [{ model: Tag }]
+      include: [{ model: Product }]
     });
 
     if (!idData) {
-      res.status(404).json({ message: 'No del found with this id!' });
+      res.status(404).json({ message: 'No location found with this id!' });
       return;
     }
 
@@ -49,7 +49,7 @@ router.put('/:id', (req, res) => {
   Tag.update(
     {
       // All the fields you can update and the data attached to the request body.
-      Tag_name: req.body.Tag_name,
+      tag_name: req.body.tag_name,
       
     },
     {
